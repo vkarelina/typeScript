@@ -14,8 +14,8 @@ interface IBaseDescription {
 
 type TypeDish = IPasta | IPizza;
 
-interface IKitchen<T extends TypeDish> {
-  makeDish: (dish: T) => void;
+interface IKitchen {
+  makeDish: (dish: TypeDish) => void;
 }
 
 interface IPizza extends IBaseDescription {
@@ -45,7 +45,7 @@ class Pizza implements IPizza {
       this.hasCheese = hasCheese;
   }
 
-  bake() {
+  bake(): void {
       setTimeout(console.log, this.bakeTime, 'Enjoy your pizza!');
   }
 }
@@ -65,14 +65,15 @@ class Pasta implements IPasta {
       this.hasSauce = hasSauce;
   }
 
-  cook() {
+  cook(): void {
       setTimeout(console.log, this.cookTime, 'Enjoy your pasta!');
   }
 }
 
-class Kitchen <T extends TypeDish> implements IKitchen<T> {
-  makeDish(dish: T) {
+class Kitchen implements IKitchen {
+  makeDish(dish: TypeDish): void {
       if (dish instanceof Pasta) {
+        console.log(dish.cook())
           return dish.cook();
       } else if (dish instanceof Pizza) {
           return dish.bake();

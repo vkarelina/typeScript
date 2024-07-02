@@ -73,10 +73,10 @@ class IceCream extends BaseProduct implements IIceCream {
   }
 }
 
-const shop = new Shop();
+const shop: IShop<IProduct> = new Shop();
 
-const iceCream: IIceCream = new IceCream(10, 0, true);
-const banana: IBanana = new Banana(5, 0.1, SizeProducts.small);
+const iceCream = new IceCream(10, 0, true);
+const banana = new Banana(5, 0.1, SizeProducts.small);
 
 shop.addGood(iceCream);
 shop.addGood(banana);
